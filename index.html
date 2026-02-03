@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transparência Brasil - Pesquisa</title>
+    <title>Transparência Brasil - Gastos e Verbas</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f1ea; display: flex; justify-content: center; padding-top: 50px; }
         .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
@@ -14,14 +14,14 @@
         input, select { width: 100%; padding: 12px; border: 1px solid #dcdcdc; border-radius: 8px; box-sizing: border-box; font-size: 16px; background-color: #f9f9f9; }
         button { width: 100%; padding: 15px; background-color: #1a432e; color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; transition: background 0.3s; margin-top: 10px; }
         button:hover { background-color: #123021; }
-        .info-box { background-color: #e7f3ef; border: 1px solid #b2d4c9; color: #1a432e; padding: 15px; border-radius: 8px; margin-top: 20px; font-size: 0.9em; }
+        .info-box { background-color: #fff3cd; border: 1px solid #ffeeba; color: #856404; padding: 15px; border-radius: 8px; margin-top: 20px; font-size: 0.9em; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h1>TRANSPARÊNCIA BRASIL</h1>
-    <p>Pesquise Políticos e Conheça Seu Histórico</p>
+    <p>Consulte Gastos e Verbas Públicas</p>
 
     <div class="field-group">
         <label>Nome do Político</label>
@@ -61,10 +61,10 @@
         <input type="text" id="cidade" placeholder="Ex: Ceu Azul">
     </div>
 
-    <button onclick="pesquisar()">PESQUISAR POLÍTICO</button>
+    <button onclick="pesquisar()">PESQUISAR GASTOS</button>
 
     <div class="info-box">
-        💡 <strong>Dica:</strong> As buscas são realizadas em tempo real nos portais da transparência e no DivulgaCand do TSE.
+        ⚠️ <strong>Atenção:</strong> A pesquisa abrirá os portais oficiais (TSE e Transparência) focando em <strong>gastos de campanha, verbas de gabinete e evolução patrimonial</strong>.
     </div>
 </div>
 
@@ -75,18 +75,11 @@
         const cidade = document.getElementById('cidade').value;
         const estado = document.getElementById('estado').value;
 
-        if (!nome && !cidade && cargo !== "Presidente") {
-            alert("Por favor, preencha o nome ou a cidade para cargos regionais.");
-            return;
-        }
-
-        // Criar termo de busca otimizado para portais de transparência
-        let query = `${nome} ${cargo} ${estado} ${cidade} transparencia histórico patrimônio`.trim();
+        // Termo de busca focado em DINHEIRO e GASTOS
+        let query = `${nome} ${cargo} ${estado} ${cidade} gastos de gabinete verba indenizatória despesas campanha patrimônio`.trim();
         
-        // URL de busca no Google focada em dados oficiais
         const urlGoogle = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
         
-        // Abre o resultado em uma nova aba
         window.open(urlGoogle, '_blank');
     }
 </script>
