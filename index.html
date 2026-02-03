@@ -3,44 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transparência Brasil - Salários e Verbas</title>
+    <title>Transparência Brasil - Gastos de Vereadores</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f1ea; display: flex; justify-content: center; padding-top: 30px; }
-        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 550px; }
-        h1 { color: #1a432e; text-align: center; font-size: 2em; margin-bottom: 5px; text-transform: uppercase; }
+        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
+        h1 { color: #1a432e; text-align: center; font-size: 1.8em; margin-bottom: 5px; text-transform: uppercase; }
         p { text-align: center; color: #8b5e3c; margin-bottom: 25px; font-weight: bold; }
         .field-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; color: #333; font-weight: 600; }
         input, select { width: 100%; padding: 12px; border: 1px solid #dcdcdc; border-radius: 8px; font-size: 16px; background-color: #f9f9f9; }
-        .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
-        button { padding: 15px; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; color: white; }
-        .btn-primary { background-color: #1a432e; grid-column: span 2; }
-        .btn-secondary { background-color: #8b5e3c; }
-        button:hover { opacity: 0.9; transform: translateY(-2px); }
-        .info-box { background-color: #fff3cd; border: 1px solid #ffeeba; color: #856404; padding: 15px; border-radius: 8px; margin-top: 20px; font-size: 0.85em; }
+        .btn-main { width: 100%; padding: 15px; background-color: #1a432e; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .btn-verba { width: 100%; padding: 15px; background-color: #8b5e3c; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        button:hover { opacity: 0.9; }
+        .info-box { background-color: #e7f3ef; border: 1px solid #b2d4c9; color: #1a432e; padding: 15px; border-radius: 8px; margin-top: 20px; font-size: 0.85em; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h1>TRANSPARÊNCIA BRASIL</h1>
-    <p>Portal de Salários e Despesas Públicas</p>
+    <p>Consulta Direta de Gastos e Verbas</p>
 
     <div class="field-group">
-        <label>Nome do Político (Opcional)</label>
-        <input type="text" id="nome" placeholder="Ex: Laurindo">
-    </div>
-
-    <div class="field-group">
-        <label>Cargo</label>
-        <select id="cargo">
-            <option value="Presidente">Presidente</option>
-            <option value="Governador">Governador</option>
-            <option value="Senador">Senador</option>
-            <option value="Deputado">Deputado</option>
-            <option value="Prefeito">Prefeito</option>
-            <option value="Vereador">Vereador</option>
-        </select>
+        <label>Nome do Vereador</label>
+        <input type="text" id="nome" placeholder="Ex: Nome do Político">
     </div>
 
     <div class="field-group">
@@ -48,31 +34,26 @@
         <input type="text" id="local" placeholder="Ex: Ceu Azul PR">
     </div>
 
-    <button class="btn-primary" onclick="pesquisar('salario')">CONSULTAR SALÁRIO (SUBSÍDIO)</button>
-    
-    <div class="btn-grid">
-        <button class="btn-secondary" onclick="pesquisar('gastos')">VER GASTOS/VERBAS</button>
-        <button class="btn-secondary" onclick="pesquisar('patrimonio')">VER PATRIMÔNIO</button>
-    </div>
+    <button class="btn-main" onclick="buscar('salario')">VER SALÁRIO (SUBSÍDIO)</button>
+    <button class="btn-verba" onclick="buscar('verba')">VERBA DE GABINETE (DIRETO)</button>
 
     <div class="info-box">
-        💡 <strong>Como funciona:</strong> O sistema utiliza filtros avançados para buscar "Tabelas de Subsídios" e "Folhas de Pagamento" diretamente nos portais da transparência federais, estaduais e municipais.
+        🚀 <strong>Dica:</strong> O botão "Verba de Gabinete" busca direto nos portais das Câmaras Municipais (leg.br), onde ficam os recibos e gastos mensais.
     </div>
 </div>
 
 <script>
-    function pesquisar(tipo) {
+    function buscar(tipo) {
         const nome = document.getElementById('nome').value;
-        const cargo = document.getElementById('cargo').value;
         const local = document.getElementById('local').value;
         let busca = "";
 
-        if (tipo === 'salario') {
-            busca = `${nome} ${cargo} ${local} "tabela de vencimentos" OR "subsídio" OR "folha de pagamento" site:gov.br OR site:leg.br`;
-        } else if (tipo === 'gastos') {
-            busca = `${nome} ${cargo} ${local} "verba de gabinete" OR "despesas" site:gov.br OR site:leg.br`;
+        if (tipo === 'verba') {
+            // Foca a busca dentro de sites de Câmaras Municipais (.leg.br)
+            busca = `${nome} ${local} "verba de gabinete" OR "gastos" OR "despesas" site:leg.br`;
         } else {
-            busca = `${nome} ${cargo} ${local} "declaração de bens" OR "patrimônio" TSE`;
+            // Busca o salário em portais de transparência gerais
+            busca = `${nome} vereador ${local} "subsídio" OR "remuneração" site:gov.br OR site:leg.br`;
         }
 
         window.open(`https://www.google.com/search?q=${encodeURIComponent(busca)}`, '_blank');
