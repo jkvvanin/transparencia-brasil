@@ -13,126 +13,77 @@
         label { display: block; margin-bottom: 5px; color: #333; font-weight: 500; }
         input, select { width: 100%; padding: 12px; border: 1px solid #dcdcdc; border-radius: 8px; box-sizing: border-box; font-size: 16px; background-color: #f9f9f9; }
         button { width: 100%; padding: 15px; background-color: #1a432e; color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; transition: background 0.3s; margin-top: 10px; }
-       <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transparência Brasil - Gastos e Verbas</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f1ea; display: flex; justify-content: center; padding-top: 50px; }
-        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
-        h1 { color: #1a432e; text-align: center; font-size: 2.2em; margin-bottom: 5px; text-transform: uppercase; }
-        p { text-align: center; color: #8b5e3c; margin-bottom: 25px; font-weight: bold; }
-        .field-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; color: #333; font-weight: 500; }
-        input, select { width: 100%; padding: 12px; border: 1px solid #dcdcdc; border-radius: 8px; box-sizing: border-box; font-size: 16px; background-color: #f9f9f9; }
-        button { width: 100%; padding: 15px; background-color: #1a432e; color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; transition: background 0.3s; margin-top: 10px; }
         button:hover { background-color: #123021; }
         .info-box { background-color: #fff3cd; border: 1px solid #ffeeba; color: #856404; padding: 15px; border-radius: 8px; margin-top: 20px; font-size: 0.9em; }
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>TRANSPARÊNCIA BRASIL</h1>
-    <p>Consulte Gastos e Verbas Públicas</p>
-    <div class="field-group">
-        <label>Nome do Político</label>
-        <input type="text" id="nome" placeholder="Ex: Laurindo">
-    </div>
-    <div class="field-group">
-        <label>Cargo</label>
-        <select id="cargo">
-            <option value="Presidente">Presidente</option>
-            <option value="Prefeito">Prefeito</option>
-            <option value="Vereador">Vereador</option>
-            <option value="Deputado">Deputado</option>
-            <option value="Governador">Governador</option>
-            <option value="Senador">Senador</option>
-        </select>
-    </div>
-    <div class="field-group">
-        <label>Estado (UF)</label>
-        <select id="estado">
-            <option value="">Brasil (Geral)</option>
-            <option value="PR">Paraná</option>
-            <option value="SP">São Paulo</option>
-            <option value="SC">Santa Catarina</option>
-            <option value="RS">Rio Grande do Sul</option>
-        </select>
-    </div>
-    <div class="field-group">
-        <label>Cidade</label>
-        <input type="text" id="cidade" placeholder="Ex: Ceu Azul">
-    </div>
-    <button onclick="pesquisar()">PESQUISAR GASTOS</button>
-    <div class="info-box">
-        ⚠️ <strong>Atenção:</strong> A pesquisa foca em gastos de campanha, verbas de gabinete e patrimônio.
-    </div>
-</div>
-<script>
-    function pesquisar() {
-        const nome = document.getElementById('nome').value;
-        const cargo = document.getElementById('cargo').value;
-        const cidade = document.getElementById('cidade').value;
-        const estado = document.getElementById('estado').value;
-        let query = `${nome} ${cargo} ${estado} ${cidade} gastos de gabinete verba patrimônio`.trim();
-        window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
-    }
-</script>
-</body>
-</html>
-        .info-box { background-color: #fff3cd; border: 1px solid #ffeeba; color: #856404; padding: 15px; border-radius: 8px; margin-top: 20px; font-size: 0.9em; }
-    </style>
-</head>
-<body>
-<div class="container">
-    <h1>TRANSPARÊNCIA BRASIL</h1>
-    <p>Consulte Gastos e Verbas Públicas</p>
-    <div class="field-group">
-        <label>Nome do Político</label>
-        <input type="text" id="nome" placeholder="Ex: Laurindo">
-    </div>
-    <div class="field-group">
-        <label>Cargo</label>
-        <select id="cargo">
-            <option value="Presidente">Presidente</option>
-            <option value="Prefeito">Prefeito</option>
-            <option value="Vereador">Vereador</option>
-            <option value="Deputado">Deputado</option>
-            <option value="Governador">Governador</option>
-            <option value="Senador">Senador</option>
-        </select>
-    </div>
-    <div class="field-group">
-        <label>Estado (UF)</label>
-        <select id="estado">
-            <option value="">Brasil (Geral)</option>
-            <option value="PR">Paraná</option>
-            <option value="SP">São Paulo</option>
-            <option value="SC">Santa Catarina</option>
-            <option value="RS">Rio Grande do Sul</option>
-        </select>
-    </div>
-    <div class="field-group">
-        <label>Cidade</label>
-        <input type="text" id="cidade" placeholder="Ex: Ceu Azul">
-    </div>
-    <button onclick="pesquisar()">PESQUISAR GASTOS</button>
-    <div class="info-box">
-        ⚠️ <strong>Atenção:</strong> A pesquisa foca em gastos de campanha, verbas de gabinete e patrimônio.
-    </div>
-</div>
-<script>
-    function pesquisar() {
-        const nome = document.getElementById('nome').value;
-        const cargo = document.getElementById('cargo').value;
-        const cidade = document.getElementById('cidade').value;
-        const estado = document.getElementById('estado').value;
-        let query = `${nome} ${cargo} ${estado} ${cidade} gastos de gabinete verba patrimônio`.trim();
-        window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
-    }
-</script>
-</body>
-</html>
 
+<div class="container">
+    <h1>TRANSPARÊNCIA BRASIL</h1>
+    <p>Consulte Gastos e Verbas Públicas</p>
+
+    <div class="field-group">
+        <label>Nome do Político</label>
+        <input type="text" id="nome" placeholder="Ex: Laurindo">
+    </div>
+
+    <div class="field-group">
+        <label>Cargo</label>
+        <select id="cargo">
+            <option value="Presidente">Presidente</option>
+            <option value="Prefeito">Prefeito</option>
+            <option value="Vereador">Vereador</option>
+            <option value="Deputado">Deputado</option>
+            <option value="Governador">Governador</option>
+            <option value="Senador">Senador</option>
+        </select>
+    </div>
+
+    <div class="field-group">
+        <label>Estado (UF)</label>
+        <select id="estado">
+            <option value="">Brasil (Geral)</option>
+            <option value="PR">Paraná</option>
+            <option value="SP">São Paulo</option>
+            <option value="SC">Santa Catarina</option>
+            <option value="RS">Rio Grande do Sul</option>
+            <option value="AC">Acre</option><option value="AL">Alagoas</option><option value="AP">Amapá</option>
+            <option value="AM">Amazonas</option><option value="BA">Bahia</option><option value="CE">Ceará</option>
+            <option value="DF">Distrito Federal</option><option value="ES">Espírito Santo</option><option value="GO">Goiás</option>
+            <option value="MA">Maranhão</option><option value="MT">Mato Grosso</option><option value="MS">Mato Grosso do Sul</option>
+            <option value="MG">Minas Gerais</option><option value="PA">Pará</option><option value="PB">Paraíba</option>
+            <option value="PE">Pernambuco</option><option value="PI">Piauí</option><option value="RJ">Rio de Janeiro</option>
+            <option value="RN">Rio Grande do Norte</option><option value="RO">Rondônia</option><option value="RR">Roraima</option>
+            <option value="SE">Sergipe</option><option value="TO">Tocantins</option>
+        </select>
+    </div>
+
+    <div class="field-group">
+        <label>Cidade</label>
+        <input type="text" id="cidade" placeholder="Ex: Ceu Azul">
+    </div>
+
+    <button onclick="pesquisar()">PESQUISAR GASTOS</button>
+
+    <div class="info-box">
+        ⚠️ <strong>Atenção:</strong> A pesquisa foca em gastos de campanha, verbas de gabinete e patrimônio.
+    </div>
+</div>
+
+<script>
+    function pesquisar() {
+        const nome = document.getElementById('nome').value;
+        const cargo = document.getElementById('cargo').value;
+        const cidade = document.getElementById('cidade').value;
+        const estado = document.getElementById('estado').value;
+
+        // Termo de busca focado em verbas e despesas
+        let query = `${nome} ${cargo} ${estado} ${cidade} gastos de gabinete verba patrimônio despesas`.trim();
+        
+        window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+    }
+</script>
+
+</body>
+</html>
