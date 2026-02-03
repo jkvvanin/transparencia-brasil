@@ -7,7 +7,7 @@
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f1ea; display: flex; justify-content: center; padding-top: 30px; }
         .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
-        h1 { color: #1a432e; text-align: center; font-size: 1.8em; margin-bottom: 5px; text-transform: uppercase; }
+        h1 { color: #1a432e; text-align: center; font-size: 1.8em; margin-bottom: 5px; text-transform: uppercase; border-bottom: 2px solid #1a432e; padding-bottom: 10px; }
         p { text-align: center; color: #8b5e3c; margin-bottom: 25px; font-weight: bold; }
         .field-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; color: #333; font-weight: 600; }
@@ -21,10 +21,12 @@
 <div class="container">
     <h1>TRANSPARÊNCIA BRASIL</h1>
     <p>Consulta de Salários e Verbas</p>
+    
     <div class="field-group">
         <label>Nome do Político</label>
         <input type="text" id="nome" placeholder="Ex: Nome do Político">
     </div>
+
     <div class="field-group">
         <label>Cargo</label>
         <select id="cargo">
@@ -36,27 +38,36 @@
             <option value="Vereador">Vereador</option>
         </select>
     </div>
+
     <div class="field-group">
         <label>Cidade e Estado</label>
         <input type="text" id="local" placeholder="Ex: Ceu Azul PR">
     </div>
+
     <button class="btn-main" onclick="buscar('salario')">VER SALÁRIO (SUBSÍDIO)</button>
     <button class="btn-sec" onclick="buscar('verba')">VER GASTOS E VERBAS</button>
+    <button class="btn-sec" onclick="buscar('patrimonio')">VER PATRIMÔNIO (TSE)</button>
+
     <div class="info-box">
         💡 <strong>Dica:</strong> As buscas focam em portais oficiais (.gov.br e .leg.br) para garantir dados reais.
     </div>
 </div>
+
 <script>
     function buscar(tipo) {
         const nome = document.getElementById('nome').value;
         const cargo = document.getElementById('cargo').value;
         const local = document.getElementById('local').value;
         let busca = "";
+
         if (tipo === 'verba') {
             busca = `${nome} ${cargo} ${local} "verba de gabinete" OR "gastos" site:gov.br OR site:leg.br`;
+        } else if (tipo === 'salario') {
+            busca = `${nome} ${cargo} ${local} "subsídio" OR "remuneração" site:gov.br OR site:leg.br`;
         } else {
-            busca = `${nome} ${cargo} ${local} "subsídio" OR "folha de pagamento" site:gov.br OR site:leg.br`;
+            busca = `${nome} ${cargo} ${local} "declaração de bens" OR "patrimônio" TSE`;
         }
+        
         window.open(`https://www.google.com/search?q=${encodeURIComponent(busca)}`, '_blank');
     }
 </script>
