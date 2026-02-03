@@ -3,23 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transparência Brasil - Oficial</title>
+    <title>Transparência Brasil - Auditoria Oficial</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f1ea; display: flex; justify-content: center; padding-top: 20px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f1ea; display: flex; justify-content: center; padding-top: 20px; padding-bottom: 40px; }
         .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
         h1 { color: #1a432e; text-align: center; font-size: 1.8em; margin-bottom: 5px; text-transform: uppercase; border-bottom: 2px solid #1a432e; padding-bottom: 10px; }
         p { text-align: center; color: #8b5e3c; margin-bottom: 25px; font-weight: bold; }
         .field-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; color: #333; font-weight: 600; }
         input, select { width: 100%; padding: 12px; border: 1px solid #dcdcdc; border-radius: 8px; font-size: 16px; background-color: #f9f9f9; }
-        .btn-main { width: 100%; padding: 15px; background-color: #1a432e; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        .btn-sec { width: 100%; padding: 15px; background-color: #8b5e3c; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .btn-main { width: 100%; padding: 15px; background-color: #1a432e; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+        .btn-sec { width: 100%; padding: 15px; background-color: #8b5e3c; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+        .btn-jus { width: 100%; padding: 15px; background-color: #b22222; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+        .legal-box { background-color: #f9f9f9; border: 1px solid #e0e0e0; padding: 15px; border-radius: 8px; margin-top: 25px; font-size: 0.8em; color: #666; line-height: 1.4; }
+        .legal-title { font-weight: bold; color: #1a432e; display: block; margin-bottom: 5px; text-transform: uppercase; }
     </style>
 </head>
 <body>
 <div class="container">
     <h1>TRANSPARÊNCIA BRASIL</h1>
-    <p>Busca Inteligente por Município</p>
+    <p>Auditoria de Gastos e Histórico</p>
     
     <div class="field-group">
         <label>Nome do Político</label>
@@ -42,15 +45,15 @@
         <label>Estado (UF)</label>
         <select id="estado" onchange="carregarCidades()">
             <option value="">Selecione o Estado</option>
-            <option value="AC">Acre</option><option value="AL">Alagoas</option><option value="AP">Amapá</option>
-            <option value="AM">Amazonas</option><option value="BA">Bahia</option><option value="CE">Ceará</option>
-            <option value="DF">Distrito Federal</option><option value="ES">Espírito Santo</option><option value="GO">Goiás</option>
-            <option value="MA">Maranhão</option><option value="MT">Mato Grosso</option><option value="MS">Mato Grosso do Sul</option>
-            <option value="MG">Minas Gerais</option><option value="PA">Pará</option><option value="PB">Paraíba</option>
-            <option value="PR">Paraná</option><option value="PE">Pernambuco</option><option value="PI">Piauí</option>
-            <option value="RJ">Rio de Janeiro</option><option value="RN">Rio Grande do Norte</option><option value="RS">Rio Grande do Sul</option>
-            <option value="RO">Rondônia</option><option value="RR">Roraima</option><option value="SC">Santa Catarina</option>
-            <option value="SP">São Paulo</option><option value="SE">Sergipe</option><option value="TO">Tocantins</option>
+            <option value="PR">Paraná</option><option value="SC">Santa Catarina</option><option value="RS">Rio Grande do Sul</option>
+            <option value="SP">São Paulo</option><option value="AC">Acre</option><option value="AL">Alagoas</option>
+            <option value="AP">Amapá</option><option value="AM">Amazonas</option><option value="BA">Bahia</option>
+            <option value="CE">Ceará</option><option value="DF">Distrito Federal</option><option value="ES">Espírito Santo</option>
+            <option value="GO">Goiás</option><option value="MA">Maranhão</option><option value="MT">Mato Grosso</option>
+            <option value="MS">Mato Grosso do Sul</option><option value="MG">Minas Gerais</option><option value="PA">Pará</option>
+            <option value="PB">Paraíba</option><option value="PE">Pernambuco</option><option value="PI">Piauí</option>
+            <option value="RJ">Rio de Janeiro</option><option value="RN">Rio Grande do Norte</option><option value="RO">Rondônia</option>
+            <option value="RR">Roraima</option><option value="SE">Sergipe</option><option value="TO">Tocantins</option>
         </select>
     </div>
 
@@ -63,6 +66,12 @@
     <button class="btn-main" onclick="buscar('salario')">VER SALÁRIO (SUBSÍDIO)</button>
     <button class="btn-sec" onclick="buscar('verba')">VER GASTOS E VERBAS</button>
     <button class="btn-sec" onclick="buscar('patrimonio')">VER PATRIMÔNIO (TSE)</button>
+    <button class="btn-jus" onclick="buscar('judicial')">VER AÇÕES JUDICIAIS</button>
+
+    <div class="legal-box">
+        <span class="legal-title">⚖️ Base Legal e Transparência</span>
+        Este aplicativo facilita o acesso a dados públicos garantidos pela <strong>Lei de Acesso à Informação (Lei nº 12.527/2011)</strong>. As consultas são direcionadas automaticamente a portais oficiais (.gov.br, .leg.br e TSE), assegurando que o cidadão exerça seu direito constitucional de fiscalização.
+    </div>
 </div>
 
 <script>
@@ -90,9 +99,12 @@
         const cidade = document.getElementById('cidade').value;
         const estado = document.getElementById('estado').value;
         let q = "";
+
         if (tipo === 'verba') q = `${nome} ${cargo} ${cidade} ${estado} "verba de gabinete" OR "gastos" site:gov.br OR site:leg.br`;
         else if (tipo === 'salario') q = `${nome} ${cargo} ${cidade} ${estado} "subsídio" OR "remuneração" site:gov.br OR site:leg.br`;
-        else q = `${nome} ${cargo} ${cidade} ${estado} "declaração de bens" OR "patrimônio" TSE`;
+        else if (tipo === 'patrimonio') q = `${nome} ${cargo} ${cidade} ${estado} "declaração de bens" OR "patrimônio" TSE`;
+        else if (tipo === 'judicial') q = `${nome} ${cargo} ${cidade} ${estado} "processo" OR "ação judicial" OR "jusbrasil" OR "condenação"`;
+
         window.open(`https://www.google.com/search?q=${encodeURIComponent(q)}`, '_blank');
     }
 </script>
